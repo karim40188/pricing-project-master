@@ -2,10 +2,11 @@ import { Outlet } from "react-router-dom";
 import SideBar from "./SideBar";
 import { Box } from "@mui/material";
 import Navbar from "./Navbar";
-import { useDirection } from "./Context/Context";
+import { useContext } from "react";
+import { LanguageContext } from "./Context/Context";
 
 function Layout() {
-  const { direction } = useDirection();
+  const { direction } = useContext(LanguageContext);
 
   return (
     <Box sx={{ display: "flex", direction }}>

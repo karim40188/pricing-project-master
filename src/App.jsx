@@ -7,8 +7,6 @@ import Reports from "./components/Reports";
 import RegisterPage from "./components/Register";
 import LoginPage from "./components/Login";
 import {
-  DirectionProvider,
-  
   LanguageProvider,
 } from "./components/Context/Context";
 
@@ -47,13 +45,11 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <DirectionProvider>
-        <LanguageProvider>
-          <RouterProvider router={router}>
-            <div>App</div>
-          </RouterProvider>
-        </LanguageProvider>
-      </DirectionProvider>
+      <LanguageProvider>
+        <RouterProvider router={router}>
+          <div>App</div>
+        </RouterProvider>
+      </LanguageProvider>
     </ThemeProvider>
   );
 }

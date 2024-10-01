@@ -1,13 +1,14 @@
 import { Box, Button, Typography } from "@mui/material";
-import {  useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useLanguage } from "./Context/Context";
+import { LanguageContext } from "./Context/Context";
 import { useTranslation } from "react-i18next";
 
 function SideBar() {
   let navigate = useNavigate();
+  const { direction, handleLanguageChange } = useContext(LanguageContext);
   const { t } = useTranslation();
-  const { handleLanguageChange } = useLanguage();
+
   const [links, setLinks] = useState([]);
 
   useEffect(() => {
@@ -21,12 +22,6 @@ function SideBar() {
       { path: "/settings", name: t("settings") },
     ]);
   }, [t]);
-
-  const handleLanguage = (lng) => {
-    handleLanguageChange(lng);
-  };
-
-  const location = useLocation();
 
   return (
     <Box>
@@ -59,11 +54,10 @@ function SideBar() {
           }}
         >
           {links.map((link) => {
-            const isActive = location.pathname === link.path;
+            const isActive = useLocation().pathname === link.path;
 
             return (
               <Typography
-                key={link.name}
                 sx={{
                   cursor: "pointer",
                   display: "flex",
@@ -85,14 +79,45 @@ function SideBar() {
                   },
                 }}
                 onClick={() => navigate(link.path)}
+                key={link.name}
               >
                 {link.name}
               </Typography>
             );
           })}
           <Box sx={{ display: "flex" }}>
-            <Button onClick={() => handleLanguage("en")}>English</Button>
-            <Button onClick={() => handleLanguage("ar")}>عربي</Button>
+            <Button
+              sx={{
+                borderRadius: "8px",
+                width: "100px",
+                height: "40px",
+                backgroundColor: "#114639",
+                color: "#fff",
+                "&:hover": {
+                  backgroundColor: "#114639",
+                },
+                transition: "background-color 0.3s ease",
+              }}
+              onClick={() => handleLanguageChange("en")}
+            >
+              English
+            </Button>
+            <Button
+              sx={{
+                borderRadius: "8px",
+                width: "100px",
+                height: "40px",
+                backgroundColor: "#114639",
+                color: "#fff",
+                "&:hover": {
+                  backgroundColor: "#114639",
+                },
+                transition: "background-color 0.3s ease",
+              }}
+              onClick={() => handleLanguageChange("ar")}
+            >
+              عربي
+            </Button>
           </Box>
         </Box>
       </Box>
