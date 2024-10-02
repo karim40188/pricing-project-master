@@ -6,9 +6,9 @@ import { useTranslation } from "react-i18next";
 
 function SideBar() {
   let navigate = useNavigate();
-  const { direction, handleLanguageChange } = useContext(LanguageContext);
-  const { t } = useTranslation();
+  const { handleLanguageChange } = useContext(LanguageContext);
 
+  const { t } = useTranslation();
   const [links, setLinks] = useState([]);
 
   useEffect(() => {
@@ -20,6 +20,7 @@ function SideBar() {
       { path: "/profitanalysis", name: t("profitAnalysis") },
       { path: "/reports", name: t("reports") },
       { path: "/settings", name: t("settings") },
+      { path: "/pricingoffers", name: t("pricingoffters") },
     ]);
   }, [t]);
 

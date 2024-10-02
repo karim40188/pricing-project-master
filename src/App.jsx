@@ -9,6 +9,7 @@ import LoginPage from "./components/Login";
 import {
   LanguageProvider,
 } from "./components/Context/Context";
+import PricingOffers from "./components/PricingOffers";
 
 const theme = createTheme({
   components: {
@@ -35,6 +36,7 @@ function App() {
         { path: "/home", element: <Home /> },
         { path: "/", element: <Home /> },
         { path: "/reports", element: <Reports /> },
+        { path: "/pricingoffers", element: <PricingOffers /> },
       ],
     },
 

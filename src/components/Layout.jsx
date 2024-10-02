@@ -12,7 +12,7 @@ function Layout() {
     <Box sx={{ display: "flex", direction }}>
       <SideBar />
       <Box sx={{ ml: "15%" }}>
-        <Navbar />
+        <Navbar/>
         <Outlet />
       </Box>
     </Box>

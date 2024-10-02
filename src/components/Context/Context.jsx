@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 
 export const LanguageContext = createContext();
 
+// eslint-disable-next-line react/prop-types
 export const LanguageProvider = ({ children }) => {
   const { i18n } = useTranslation();
   const [language, setLanguage] = useState("en");
@@ -31,6 +32,7 @@ export const LanguageProvider = ({ children }) => {
   );
 };
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useLanguage = () => {
   return useContext(LanguageContext);
 };
