@@ -25,8 +25,12 @@ export const LanguageProvider = ({ children }) => {
     setDirection(lng === "en" ? "ltr" : "rtl");
   };
 
+
+
+  let [sideBarOpen,setSideBarOpen]=useState(true)
+
   return (
-    <LanguageContext.Provider value={{ language, direction, handleLanguageChange }}>
+    <LanguageContext.Provider value={{ language, direction, handleLanguageChange , sideBarOpen, setSideBarOpen }}>
       {children}
     </LanguageContext.Provider>
   );

@@ -15,7 +15,7 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import {
   Table,
   TableBody,
@@ -25,6 +25,7 @@ import {
   TableRow,
 } from "@mui/material";
 import { useTranslation } from "react-i18next";
+// import { LanguageContext } from "./Context/Context";
 
 function Home() {
   let { t } = useTranslation();
@@ -33,6 +34,7 @@ function Home() {
   const [customerName, setCustomerName] = useState("");
   const [customerId, setCustomerId] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
+  // const { sideBarOpen } = useContext(LanguageContext);
 
   const [customerList] = useState([
     { id: "1", name: "Customer A" },
@@ -87,19 +89,18 @@ function Home() {
   return (
     <Box
       sx={{
-        paddingTop: "100px",
-        paddingLeft: "50px",
+        paddingTop: "80px",
+        paddingLeft: "40px",
       }}
     >
       <Grid2 container sx={{ gap: "50px" }}>
         <Grid2
-          size={{ xs: 4 }}
+          size={{ xs: 12, md: 4 }}
           sx={{ display: "flex", flexDirection: "column", gap: "30px" }}
         >
           {/* Done */}
           {/* First Box */}
-          <Box sx={{ border: "1px solid #ccc", p: "10px" }}>
-            
+          <Box sx={{ border: "1px solid #ccc", p: "20px" }}>
             <Box sx={{ display: "flex", flexWrap: "wrap", gap: "15px" }}>
               <Box
                 sx={{
@@ -111,11 +112,7 @@ function Home() {
               >
                 <TextField label={t("statementNumber")} fullWidth />
                 <TextField label={t("statementDate")} fullWidth />
-                <TextField
-                  label={t("boxType")} 
-                  fullWidth
-                  select
-                >
+                <TextField label={t("boxType")} fullWidth select>
                   <MenuItem value="type1">{t("type1")}</MenuItem>
                   <MenuItem value="type2">{t("type2")}</MenuItem>
                   <MenuItem value="type3">{t("type3")}</MenuItem>
@@ -156,7 +153,7 @@ function Home() {
                       </Typography>
 
                       <TextField
-                        label={t("searchCustomer")} 
+                        label={t("searchCustomer")}
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
                         fullWidth
@@ -182,7 +179,7 @@ function Home() {
                       </List>
 
                       <TextField
-                        label={t("customerNumber")} 
+                        label={t("customerNumber")}
                         value={customerId}
                         fullWidth
                         margin="normal"
@@ -191,7 +188,7 @@ function Home() {
                         }}
                       />
                       <TextField
-                        label={t("customerName")} 
+                        label={t("customerName")}
                         value={customerName}
                         fullWidth
                         margin="normal"
@@ -202,7 +199,7 @@ function Home() {
                     </DialogContent>
                     <DialogActions>
                       <Button onClick={handleClose} color="primary">
-                        {t("close")} 
+                        {t("close")}
                       </Button>
                     </DialogActions>
                   </Dialog>
@@ -337,7 +334,7 @@ function Home() {
           </Box>
         </Grid2>
         {/* Done */}
-        <Grid2 size={{ xs: 4 }}>
+        <Grid2 size={{ xs: 12, md: 3.5}}>
           <Box sx={{ border: "1px solid #ccc", p: "20px", width: "100%" }}>
             <Typography variant="h6" sx={{ mb: 2 }}>
               {t("surfaceDimensions")} {/* ترجمة النص */}
@@ -445,7 +442,7 @@ function Home() {
         </Grid2>
 
         {/* Done */}
-        <Grid2 size={{ xs: 2 }}>
+        <Grid2 size={{ xs: 12, md: 3 }}>
           <Box
             sx={{
               border: "1px solid #ccc",

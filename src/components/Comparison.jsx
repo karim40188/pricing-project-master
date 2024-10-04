@@ -338,7 +338,7 @@ function Comparison() {
         <Grid2 container sx={{ mt: "20px" }}>
           {/* Done */}
           <Grid2
-            size={{ xs: 4 }}
+            size={{ xs: 12 ,md:4 }}
             sx={{
               border: "1px solid #ccc",
               p: "10px",
@@ -455,7 +455,7 @@ function Comparison() {
           {/* Done */}
 
           <Grid2
-            size={{ xs: 4 }}
+            size={{ xs: 12 , md:4 }}
             sx={{
               border: "1px solid #ccc",
               p: "10px",
@@ -570,7 +570,7 @@ function Comparison() {
           </Grid2>
 
           <Grid2
-            size={{ xs: 4 }}
+            size={{ xs: 12 , md:4 }}
             sx={{
               border: "1px solid #ccc",
               p: "10px",

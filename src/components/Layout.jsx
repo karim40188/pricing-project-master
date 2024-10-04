@@ -6,12 +6,18 @@ import { useContext } from "react";
 import { LanguageContext } from "./Context/Context";
 
 function Layout() {
-  const { direction } = useContext(LanguageContext);
+  const { direction, sideBarOpen } = useContext(LanguageContext);
 
   return (
     <Box sx={{ display: "flex", direction }}>
-      <SideBar />
-      <Box sx={{ ml: "15%" }}>
+      {sideBarOpen ? <SideBar /> : ""}
+
+      <Box
+        sx={{
+          ml: sideBarOpen ? { xs: "45%", md: "15%" } : "8%",
+          transition: "700ms all",
+        }}
+      >
         <Navbar/>
         <Outlet />
       </Box>
