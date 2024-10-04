@@ -14,7 +14,7 @@ function Layout() {
 
       <Box
         sx={{
-          ml: sideBarOpen ? { xs: "45%", md: "15%" } : "8%",
+          ml: sideBarOpen ? { xs: "45%", md: "15%" } :{xs:'0',xl:'8%'},
           transition: "700ms all",
         }}
       >
