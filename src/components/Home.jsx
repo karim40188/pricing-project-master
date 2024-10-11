@@ -15,7 +15,7 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import {
   Table,
   TableBody,
@@ -25,6 +25,7 @@ import {
   TableRow,
 } from "@mui/material";
 import { useTranslation } from "react-i18next";
+import { motion } from "framer-motion";
 // import { LanguageContext } from "./Context/Context";
 
 function Home() {
@@ -87,37 +88,53 @@ function Home() {
   };
 
   return (
-    <Box
-      sx={{
-        paddingTop: "80px",
-        paddingLeft: "40px",
-      }}
-    >
-      <Grid2 container sx={{ gap: "50px" }}>
-        <Grid2
-          size={{ xs: 12, md: 4 }}
-          sx={{ display: "flex", flexDirection: "column", gap: "30px" }}
-        >
-          {/* Done */}
-          {/* First Box */}
-          <Box sx={{ border: "1px solid #ccc", p: "20px" }}>
+    <Box sx={{display:'flex',flexDirection:'column',gap:'30px'}}>
+      <Grid2 container spacing={3} justfiyContent="space-between">
+        {/* num 1 */}
+        <Grid2 size={{ xs: 12, md: 5 }}>
+          <motion.div
+            sx={{
+              border: "1px solid #ccc",
+              borderRadius: "8px",
+              boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
+              backgroundColor: "#f9f9f9",
+            }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <Typography sx={{backgroundColor:'#E0E0E0',p:'20px'}}>{t("pricingData")}</Typography>
             <Box sx={{ display: "flex", flexWrap: "wrap", gap: "15px" }}>
               <Box
                 sx={{
                   display: "flex",
                   flexDirection: "column",
                   gap: "10px",
-                  width: "45%",
+                  width: "50%",
+
                 }}
               >
-                <TextField label={t("statementNumber")} fullWidth />
-                <TextField label={t("statementDate")} fullWidth />
-                <TextField label={t("boxType")} fullWidth select>
+                <TextField
+                  label={t("statementNumber")}
+                  fullWidth
+                  variant="outlined"
+                />
+                <TextField
+                  label={t("statementDate")}
+                  fullWidth
+                  variant="outlined"
+                />
+                <TextField
+                  label={t("boxType")}
+                  fullWidth
+                  select
+                  variant="outlined"
+                >
                   <MenuItem value="type1">{t("type1")}</MenuItem>
                   <MenuItem value="type2">{t("type2")}</MenuItem>
                   <MenuItem value="type3">{t("type3")}</MenuItem>
                 </TextField>
-                <TextField label={t("tab")} fullWidth />
+                <TextField label={t("tab")} fullWidth variant="outlined" />
               </Box>
 
               <Box
@@ -128,21 +145,42 @@ function Home() {
                   gap: "10px",
                 }}
               >
-                <TextField label={t("wastePercentage")} fullWidth />
-                <TextField label={t("operatingExpenses")} fullWidth />
-                <TextField label={t("profitMargin")} fullWidth />
-                <TextField label={t("annualFactorC")} fullWidth />
-                <TextField label={t("annualFactorB")} fullWidth />
+                <TextField
+                  label={t("wastePercentage")}
+                  fullWidth
+                  variant="outlined"
+                />
+                <TextField
+                  label={t("operatingExpenses")}
+                  fullWidth
+                  variant="outlined"
+                />
+                <TextField
+                  label={t("profitMargin")}
+                  fullWidth
+                  variant="outlined"
+                />
+                <TextField
+                  label={t("annualFactorC")}
+                  fullWidth
+                  variant="outlined"
+                />
+                <TextField
+                  label={t("annualFactorB")}
+                  fullWidth
+                  variant="outlined"
+                />
               </Box>
 
               <Box>
                 <Box>
                   <TextField
-                    sx={{ width: "100%", my: "5px" }}
-                    label={t("customerName")} // ترجمة النص
+                    sx={{ width: "180%",my:'10px'  }}
+                    label={t("customerName")}
                     value={customerName}
                     onClick={handleTextFieldClick}
                     readOnly
+                    variant="outlined"
                   />
 
                   <Dialog open={open} onClose={handleClose}>
@@ -158,6 +196,7 @@ function Home() {
                         onChange={(e) => setSearchTerm(e.target.value)}
                         fullWidth
                         margin="normal"
+                        variant="outlined"
                       />
 
                       <List>
@@ -186,6 +225,7 @@ function Home() {
                         InputProps={{
                           readOnly: true,
                         }}
+                        variant="outlined"
                       />
                       <TextField
                         label={t("customerName")}
@@ -195,6 +235,7 @@ function Home() {
                         InputProps={{
                           readOnly: true,
                         }}
+                        variant="outlined"
                       />
                     </DialogContent>
                     <DialogActions>
@@ -204,139 +245,31 @@ function Home() {
                     </DialogActions>
                   </Dialog>
                 </Box>
-                <TextField sx={{ width: "100%" }} label={t("boxName")} />
+                <TextField
+                  sx={{ width: "180%",my:'10px',}}
+                  label={t("boxName")}
+                  variant="outlined"
+                />
               </Box>
             </Box>
-          </Box>
-          {/* Done */}
-          {/* Second Box - Table 1 */}
-          <Box sx={{ border: "1px solid #ccc", p: "20px", width: "100%" }}>
-            <TableContainer>
-              <Table>
-                <TableHead sx={{ backgroundColor: "#f2f2f2" }}>
-                  <TableRow>
-                    <TableCell>{t("boxName")}</TableCell> {/* ترجمة النص */}
-                    <TableCell>{t("length")}</TableCell> {/* ترجمة النص */}
-                    <TableCell>{t("width")}</TableCell> {/* ترجمة النص */}
-                    <TableCell>{t("height")}</TableCell> {/* ترجمة النص */}
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  <TableRow>
-                    <TableCell>{t("doubleBrownSimpleBox")}</TableCell>{" "}
-                    {/* ترجمة النص */}
-                    <TableCell>
-                      <TextField
-                        sx={{ width: "100%", backgroundColor: "white" }}
-                      />
-                    </TableCell>
-                    <TableCell>
-                      <TextField
-                        sx={{ width: "100%", backgroundColor: "white" }}
-                      />
-                    </TableCell>
-                    <TableCell>
-                      <TextField
-                        sx={{ width: "100%", backgroundColor: "white" }}
-                      />
-                    </TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell>{t("boxWeight")}</TableCell> {/* ترجمة النص */}
-                    <TableCell>
-                      <TextField
-                        sx={{ width: "100%", backgroundColor: "white" }}
-                      />
-                    </TableCell>
-                    <TableCell colSpan={2}></TableCell>{" "}
-                    {/* خلايا فارغة للحفاظ على الهيكل */}
-                  </TableRow>
-                </TableBody>
-              </Table>
-            </TableContainer>
-          </Box>
-
-          {/* Done */}
-          {/* Third Box - Table 2 */}
-          <Box
+          </motion.div>
+        </Grid2>
+        {/* num 2 */}
+        <Grid2 size={{ xs: 12, md: 3 }}>
+          <motion.div
             sx={{
               border: "1px solid #ccc",
               p: "20px",
               width: "100%",
-              mt: "30px",
-              borderRadius: "5px",
+              borderRadius: "8px",
+              boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
+              backgroundColor: "#f9f9f9",
             }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
           >
-            <Typography variant="h6" sx={{ mb: 2 }}>
-              {t("costAndProfitSummary")} {/* ترجمة النص */}
-            </Typography>
-
-            <Box sx={{ display: "flex", flexDirection: "column", gap: "15px" }}>
-              <Select
-                name="supplier"
-                value={data.supplier}
-                onChange={handleInputChange}
-                fullWidth
-                displayEmpty
-                inputProps={{ "aria-label": t("selectSupplier") }} // الترجمة هنا
-              >
-                <MenuItem value="" disabled>
-                  {t("selectSupplier")} {/* ترجمة النص */}
-                </MenuItem>
-                <MenuItem value="Supplier 1">{t("supplier1")}</MenuItem>
-                <MenuItem value="Supplier 2">{t("supplier2")}</MenuItem>
-                <MenuItem value="Supplier 3">{t("supplier3")}</MenuItem>
-              </Select>
-
-              <TextField
-                name="grams"
-                type="number"
-                value={data.grams}
-                onChange={handleInputChange}
-                fullWidth
-                label={t("grams")} // ترجمة النص
-              />
-
-              <Select
-                name="paperType"
-                value={data.paperType}
-                onChange={handleInputChange}
-                fullWidth
-                displayEmpty
-                inputProps={{ "aria-label": t("selectPaperType") }} // الترجمة هنا
-              >
-                <MenuItem value="" disabled>
-                  {t("selectPaperType")} {/* ترجمة النص */}
-                </MenuItem>
-                <MenuItem value="Type A">{t("typeA")}</MenuItem>
-                <MenuItem value="Type B">{t("typeB")}</MenuItem>
-                <MenuItem value="Type C">{t("typeC")}</MenuItem>
-              </Select>
-
-              <TextField
-                name="pricePerUnit"
-                type="number"
-                value={data.pricePerUnit}
-                onChange={handleInputChange}
-                fullWidth
-                label={t("pricePerUnit")} // ترجمة النص
-              />
-
-              <TextField
-                name="totalGrams"
-                type="number"
-                value={data.totalGrams}
-                onChange={handleInputChange}
-                fullWidth
-                label={t("totalGrams")} // ترجمة النص
-              />
-            </Box>
-          </Box>
-        </Grid2>
-        {/* Done */}
-        <Grid2 size={{ xs: 12, md: 3.5}}>
-          <Box sx={{ border: "1px solid #ccc", p: "20px", width: "100%" }}>
-            <Typography variant="h6" sx={{ mb: 2 }}>
+            <Typography variant="h6" sx={{ mb: 2, backgroundColor:'#E0E0E0',p:"20px" }}>
               {t("surfaceDimensions")} {/* ترجمة النص */}
             </Typography>
             <TableContainer>
@@ -371,17 +304,229 @@ function Home() {
                 </TableBody>
               </Table>
             </TableContainer>
-          </Box>
+          </motion.div>
+        </Grid2>
+    
+        <Grid2 size={{ xs: 12, md: 4 }}>
+          <motion.div
+            sx={{
+              border: "1px solid #ccc",
+              p: "20px",
+              width: "100%",
+              borderRadius: "8px",
+              boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
+              backgroundColor: "#f9f9f9",
+            }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <Typography variant="h6" sx={{ mb: 2, backgroundColor:'#E0E0E0' , p:"20px"}}>
+              {t("userInformation")}
+            </Typography>
 
-          <Box
+            <Box sx={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+              <TextField label={t("createdBy")} variant="outlined" fullWidth />
+              <TextField
+                label={t("creationDate")}
+                type="date"
+                variant="outlined"
+                fullWidth
+                slotProps={{
+                  inputLabel: {
+                    style: {
+                      transform: "translate(2px,-8px)",
+                    },
+                  },
+                }}
+              />
+              <TextField label={t("modifiedBy")} variant="outlined" fullWidth />
+              <TextField
+                label={t("modificationDate")}
+                type="date"
+                variant="outlined"
+                fullWidth
+                slotProps={{
+                  inputLabel: {
+                    style: {
+                      transform: "translate(2px,-8px)",
+                    },
+                  },
+                }}
+              />
+            </Box>
+          </motion.div>
+        </Grid2>
+      </Grid2>
+
+      <Grid2 container sx={{ gap: "50px", backgrounColor: "red" }}>
+        <Grid2
+          size={{ xs: 12, md: 5 }}
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "30px",
+          }}
+        >
+          <motion.div
+            sx={{
+              border: "1px solid #ccc",
+              p: "20px",
+              width: "100%",
+              borderRadius: "8px",
+              boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
+              backgroundColor: "#f9f9f9",
+            }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <TableContainer>
+              <Table>
+                <TableHead sx={{ backgroundColor: "#e0e0e0" }}>
+                  <TableRow>
+                    <TableCell>{t("boxName")}</TableCell>
+                    <TableCell>{t("length")}</TableCell>
+                    <TableCell>{t("width")}</TableCell>
+                    <TableCell>{t("height")}</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  <TableRow>
+                    <TableCell>{t("doubleBrownSimpleBox")}</TableCell>
+                    <TableCell>
+                      <TextField
+                        sx={{ width: "100%", backgroundColor: "" }}
+                        variant="outlined"
+                      />
+                    </TableCell>
+                    <TableCell>
+                      <TextField
+                        sx={{ width: "100%", backgroundColor: "" }}
+                        variant="outlined"
+                      />
+                    </TableCell>
+                    <TableCell>
+                      <TextField
+                        sx={{ width: "100%", backgroundColor: "" }}
+                        variant="outlined"
+                      />
+                    </TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>{t("boxWeight")}</TableCell>
+                    <TableCell>
+                      <TextField
+                        sx={{ width: "100%", backgroundColor: "" }}
+                        variant="outlined"
+                      />
+                    </TableCell>
+                    <TableCell colSpan={2}></TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </TableContainer>
+          </motion.div>
+
+          <motion.div
             sx={{
               border: "1px solid #ccc",
               p: "20px",
               width: "100%",
               mt: "30px",
+              borderRadius: "8px",
+              boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
+              backgroundColor: "#f9f9f9",
             }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
           >
-            <Typography variant="h6" sx={{ mb: 2 }}>
+            <Typography variant="h6" sx={{ mb: 2,backgroundColor:'#E0E0E0',p:"20px" }}>
+              {t("costAndProfitSummary")}
+            </Typography>
+
+            <Box sx={{ display: "flex", flexDirection: "column", gap: "15px" }}>
+              <Select
+                name="supplier"
+                value={data.supplier}
+                onChange={handleInputChange}
+                fullWidth
+                displayEmpty
+                inputProps={{ "aria-label": t("selectSupplier") }}
+              >
+                <MenuItem value="" disabled>
+                  {t("selectSupplier")}
+                </MenuItem>
+                <MenuItem value="Supplier 1">{t("supplier1")}</MenuItem>
+                <MenuItem value="Supplier 2">{t("supplier2")}</MenuItem>
+                <MenuItem value="Supplier 3">{t("supplier3")}</MenuItem>
+              </Select>
+
+              <TextField
+                name="grams"
+                type="number"
+                value={data.grams}
+                onChange={handleInputChange}
+                fullWidth
+                label={t("grams")}
+                variant="outlined"
+              />
+
+              <Select
+                name="paperType"
+                value={data.paperType}
+                onChange={handleInputChange}
+                fullWidth
+                displayEmpty
+                inputProps={{ "aria-label": t("selectPaperType") }}
+              >
+                <MenuItem value="" disabled>
+                  {t("selectPaperType")}
+                </MenuItem>
+                <MenuItem value="Type A">{t("typeA")}</MenuItem>
+                <MenuItem value="Type B">{t("typeB")}</MenuItem>
+                <MenuItem value="Type C">{t("typeC")}</MenuItem>
+              </Select>
+
+              <TextField
+                name="pricePerUnit"
+                type="number"
+                value={data.pricePerUnit}
+                onChange={handleInputChange}
+                fullWidth
+                label={t("pricePerUnit")}
+                variant="outlined"
+              />
+
+              <TextField
+                name="totalGrams"
+                type="number"
+                value={data.totalGrams}
+                onChange={handleInputChange}
+                fullWidth
+                label={t("totalGrams")}
+                variant="outlined"
+              />
+            </Box>
+          </motion.div>
+        </Grid2>
+        <Grid2 size={{ xs: 12, md: 6 , }} sx={{transform:'translateY(-100px)'}}>
+          <motion.div
+            sx={{
+              border: "1px solid #ccc",
+              p: "20px",
+              width: "100%",
+              mt: "30px",
+              borderRadius: "8px",
+              boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
+              backgroundColor: "#f9f9f9",
+            }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <Typography variant="h6" sx={{ mb: 2, backgroundColor:'#E0E0E0',p:'20px'}}>
               {t("costAndProfitSummary")}
             </Typography>
 
@@ -438,53 +583,7 @@ function Home() {
                 onChange={handleInputChange}
               />
             </Box>
-          </Box>
-        </Grid2>
-
-        {/* Done */}
-        <Grid2 size={{ xs: 12, md: 3 }}>
-          <Box
-            sx={{
-              border: "1px solid #ccc",
-              p: "20px",
-              width: "100%",
-            }}
-          >
-            <Typography variant="h6" sx={{ mb: 2 }}>
-              {t("userInformation")}
-            </Typography>
-
-            <Box sx={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-              <TextField label={t("createdBy")} variant="outlined" fullWidth />
-              <TextField
-                label={t("creationDate")}
-                type="date"
-                variant="outlined"
-                fullWidth
-                slotProps={{
-                  inputLabel: {
-                    style: {
-                      transform: "translate(2px,-8px)",
-                    },
-                  },
-                }}
-              />
-              <TextField label={t("modifiedBy")} variant="outlined" fullWidth />
-              <TextField
-                label={t("modificationDate")}
-                type="date"
-                variant="outlined"
-                fullWidth
-                slotProps={{
-                  inputLabel: {
-                    style: {
-                      transform: "translate(2px,-8px)",
-                    },
-                  },
-                }}
-              />
-            </Box>
-          </Box>
+          </motion.div>
         </Grid2>
       </Grid2>
     </Box>

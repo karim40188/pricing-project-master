@@ -20,9 +20,25 @@ const PricingOffers = () => {
   };
 
   return (
-    <Box sx={{ padding: 2, width: '1160px', margin: '0 auto' }}>
-      <Typography variant="h4" gutterBottom>Previous Pricing Offers</Typography>
-      <Button variant="contained" onClick={exportToPDF} sx={{ marginBottom: 2 }}>Export as PDF</Button>
+    <Box 
+      sx={{ 
+        // padding: 2, 
+        // width: '100%', 
+        // maxWidth: '1200px', 
+        // margin: '0 auto', // ليكون في المنتصف
+        // boxSizing: 'border-box' // يحسب البادينج ضمن الحجم الكلي
+      }}
+    >
+      <Typography variant="h4" gutterBottom>
+        Previous Pricing Offers
+      </Typography>
+      <Button 
+        variant="contained" 
+        onClick={exportToPDF} 
+        sx={{ marginBottom: 2 }}
+      >
+        Export as PDF
+      </Button>
       <TableContainer>
         <Table>
           <TableHead>
@@ -38,7 +54,9 @@ const PricingOffers = () => {
                 <TableCell>{offer.date}</TableCell>
                 <TableCell>{offer.admin}</TableCell>
                 <TableCell>
-                  <a href={offer.pdf} target="_blank" rel="noopener noreferrer">Download</a>
+                  <a href={offer.pdf} target="_blank" rel="noopener noreferrer">
+                    Download
+                  </a>
                 </TableCell>
               </TableRow>
             ))}

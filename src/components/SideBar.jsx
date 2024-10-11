@@ -4,22 +4,21 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { LanguageContext } from "./Context/Context";
 import { useTranslation } from "react-i18next";
 import logo from "../assets/logo.png";
+import { FaXmark } from "react-icons/fa6";
+
+
 function SideBar() {
   let navigate = useNavigate();
-  const { handleLanguageChange } = useContext(LanguageContext);
-
+  const { handleLanguageChange ,setSideBarOpen} = useContext(LanguageContext);
   const { t } = useTranslation();
   const [links, setLinks] = useState([]);
+
+
 
   useEffect(() => {
     setLinks([
       { path: "/home", name: t("dashboard") },
-      { path: "/Pricelist", name: t("priceList") },
       { path: "/Comparison", name: t("comparison") },
-      { path: "/transactions", name: t("transactions") },
-      { path: "/profitanalysis", name: t("profitAnalysis") },
-      { path: "/reports", name: t("reports") },
-      { path: "/settings", name: t("settings") },
       { path: "/pricingoffers", name: t("pricingoffters") },
     ]);
   }, [t]);
@@ -29,21 +28,20 @@ function SideBar() {
       <Box
         sx={{
           backgroundColor: "#0e0e0e",
-          width: { xs: "30%", md: "15%" },
+          width: { xs: "40%", sm: "200px", md: "240px" }, // Responsive width
           position: "fixed",
           left: "0",
           top: "0",
           bottom: "0",
           color: "#fff",
-          display: "flex",
-          alignItems: "center",
-          flexDirection: "column",
-          gap: "50px",
-          pt: "30px",
           boxShadow: "0 8px 16px -2px rgba(40,45,62,.24)",
-          zIndex: "9999",
+          zIndex: "99999",
+          height: "auto",
         }}
       >
+        <Box sx={{position:'absolute',right:'0',top:'0',fontSize:'30px'}} onClick={()=>{
+          setSideBarOpen(false)
+        }}><FaXmark /></Box>
         <Box
           sx={{
             width: "100%",
@@ -59,18 +57,15 @@ function SideBar() {
             sx={{
               mx: "auto",
               mb: "20px",
-              // border: "1px solid black",
-              // borderRadius: "50%",
               backgroundColor: "#fff",
-              padding: "15px",
-
+              padding: { xs: "10px", xl: "15px" }, // Responsive padding
               cursor: "pointer",
             }}
           >
             <Box
               sx={{
-                width: { xs: "50px", xl: "100px" },
-                height: { xs: "50px", xl: "100px" },
+                width: { xs: "40px", xl: "100px" }, // Responsive logo size
+                height: { xs: "40px", xl: "100px" },
               }}
             >
               <Box
@@ -111,6 +106,7 @@ function SideBar() {
                     height: "40px",
                     borderRadius: "10px 0px 0px 10px",
                   },
+                  fontSize: { xs: "0.9rem", md: "1rem" }, // Responsive text size
                 }}
                 onClick={() => navigate(link.path)}
                 key={link.name}
@@ -119,18 +115,15 @@ function SideBar() {
               </Typography>
             );
           })}
-          <Box sx={{ display: "flex", flexWrap: "wrap" }}>
+          <Box sx={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}>
             <Button
               sx={{
                 borderRadius: "8px",
-                width: "80px",
+                width: { xs: "60px", md: "80px" }, // Responsive button size
                 height: "40px",
-                // backgroundColor: "#114639",
                 color: "#fff",
-                "&:hover": {
-                  // backgroundColor: "#114639",
-                },
                 transition: "background-color 0.3s ease",
+                fontSize: { xs: "0.75rem", md: "1rem" }, // Responsive font size
               }}
               onClick={() => handleLanguageChange("en")}
             >
@@ -139,14 +132,11 @@ function SideBar() {
             <Button
               sx={{
                 borderRadius: "8px",
-                width: "80px",
+                width: { xs: "60px", md: "80px" }, // Responsive button size
                 height: "40px",
-                // backgroundColor: "#114639",
                 color: "#fff",
-                "&:hover": {
-                  // backgroundColor: "#114639",
-                },
                 transition: "background-color 0.3s ease",
+                fontSize: { xs: "0.75rem", md: "1rem" }, // Responsive font size
               }}
               onClick={() => handleLanguageChange("ar")}
             >

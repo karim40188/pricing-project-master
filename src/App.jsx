@@ -9,7 +9,7 @@ import LoginPage from "./components/Login";
 import {
   LanguageProvider,
 } from "./components/Context/Context";
-import PricingOffers from "./components/PricingOffers";
+import PricingOffers from "./components/Context/PricingOffers";
 
 const theme = createTheme({
   components: {
@@ -49,7 +49,6 @@ function App() {
     <ThemeProvider theme={theme}>
       <LanguageProvider>
         <RouterProvider router={router}>
-          <div>App</div>
         </RouterProvider>
       </LanguageProvider>
     </ThemeProvider>

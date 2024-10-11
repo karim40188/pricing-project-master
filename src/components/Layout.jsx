@@ -9,17 +9,27 @@ function Layout() {
   const { direction, sideBarOpen } = useContext(LanguageContext);
 
   return (
-    <Box sx={{ display: "flex", direction }}>
-      {sideBarOpen ? <SideBar /> : ""}
+    <Box
+      sx={{
+        direction,
+        width: "100%",
+      }}
+    >
+      <Box>{sideBarOpen && <SideBar />}</Box>
 
-      <Box
-        sx={{
-          ml: sideBarOpen ? { xs: "45%", md: "15%" } :{xs:'0',xl:'8%'},
-          transition: "700ms all",
-        }}
-      >
-        <Navbar/>
-        <Outlet />
+      <Box>
+        <Navbar />
+
+        <Box
+          sx={{
+            width: sideBarOpen ? "80%" : "90%",
+            mx: "auto",
+            ml: sideBarOpen ? "250px" : "50px",
+            padding: "40px"
+          }}
+        >
+          <Outlet />
+        </Box>
       </Box>
     </Box>
   );
