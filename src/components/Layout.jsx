@@ -24,8 +24,8 @@ function Layout() {
           sx={{
             width: sideBarOpen ? "80%" : "90%",
             mx: "auto",
-            ml: sideBarOpen ? "250px" : "50px",
-            padding: "40px"
+            ml: sideBarOpen ? {xs:"0",md:"250px"} : "45px",
+            padding: "20px"
           }}
         >
           <Outlet />

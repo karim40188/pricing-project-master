@@ -175,7 +175,7 @@ function Home() {
               <Box>
                 <Box>
                   <TextField
-                    sx={{ width: "180%",my:'10px'  }}
+                    sx={{ width: "100%",my:'10px'  }}
                     label={t("customerName")}
                     value={customerName}
                     onClick={handleTextFieldClick}
@@ -246,7 +246,7 @@ function Home() {
                   </Dialog>
                 </Box>
                 <TextField
-                  sx={{ width: "180%",my:'10px',}}
+                  sx={{ width: "100%",my:'10px',}}
                   label={t("boxName")}
                   variant="outlined"
                 />
