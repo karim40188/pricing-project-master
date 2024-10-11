@@ -112,7 +112,7 @@ function Home() {
             <Typography sx={{ backgroundColor: "#E0E0E0", p: "20px" ,width:'100%'}}>
               {t("pricingData")}
             </Typography>
-            <Box sx={{ display: "flex", flexWrap: "wrap", gap: "15px" }}>
+            <Box sx={{ display: "flex", flexWrap: "wrap", justifyContent:'space-between' }}>
               <Box
                 sx={{
                   display: "flex",

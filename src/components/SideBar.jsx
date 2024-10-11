@@ -12,7 +12,7 @@ function SideBar() {
     useContext(LanguageContext);
   const { t } = useTranslation();
   const [links, setLinks] = useState([]);
-  let sidebarWidth = sideBarOpen ? { xs: "40%", sm: "200px", md: "240px" } : "";
+  let sidebarWidth = sideBarOpen ? { xs: "30%", sm: "200px", md: "240px" } : "";
 
   useEffect(() => {
     setLinks([
