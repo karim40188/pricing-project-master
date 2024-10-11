@@ -6,14 +6,13 @@ import { useTranslation } from "react-i18next";
 import logo from "../assets/logo.png";
 import { FaXmark } from "react-icons/fa6";
 
-
 function SideBar() {
   let navigate = useNavigate();
-  const { handleLanguageChange ,setSideBarOpen} = useContext(LanguageContext);
+  const { handleLanguageChange, sideBarOpen, setSideBarOpen } =
+    useContext(LanguageContext);
   const { t } = useTranslation();
   const [links, setLinks] = useState([]);
-
-
+  let sidebarWidth = sideBarOpen ? { xs: "40%", sm: "200px", md: "240px" } : "";
 
   useEffect(() => {
     setLinks([
@@ -28,8 +27,8 @@ function SideBar() {
       <Box
         sx={{
           backgroundColor: "#0e0e0e",
-          width: { xs: "40%", sm: "200px", md: "240px" }, // Responsive width
           position: "fixed",
+          width: sidebarWidth,
           left: "0",
           top: "0",
           bottom: "0",
@@ -39,9 +38,14 @@ function SideBar() {
           height: "auto",
         }}
       >
-        <Box sx={{position:'absolute',right:'0',top:'0',fontSize:'30px'}} onClick={()=>{
-          setSideBarOpen(false)
-        }}><FaXmark /></Box>
+        <Box
+          sx={{ position: "absolute", right: "0", top: "0", fontSize: "30px" }}
+          onClick={() => {
+            setSideBarOpen(false);
+          }}
+        >
+          <FaXmark />
+        </Box>
         <Box
           sx={{
             width: "100%",
@@ -115,7 +119,9 @@ function SideBar() {
               </Typography>
             );
           })}
-          <Box sx={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}>
+          <Box
+            sx={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}
+          >
             <Button
               sx={{
                 borderRadius: "8px",

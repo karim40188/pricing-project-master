@@ -88,7 +88,13 @@ function Home() {
   };
 
   return (
-    <Box sx={{display:'flex',flexDirection:'column',gap:'30px'}}>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "30px",
+      }}
+    >
       <Grid2 container spacing={3} justfiyContent="space-between">
         {/* num 1 */}
         <Grid2 size={{ xs: 12, md: 5 }}>
@@ -103,7 +109,9 @@ function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <Typography sx={{backgroundColor:'#E0E0E0',p:'20px'}}>{t("pricingData")}</Typography>
+            <Typography sx={{ backgroundColor: "#E0E0E0", p: "20px" ,width:'100%'}}>
+              {t("pricingData")}
+            </Typography>
             <Box sx={{ display: "flex", flexWrap: "wrap", gap: "15px" }}>
               <Box
                 sx={{
@@ -111,7 +119,6 @@ function Home() {
                   flexDirection: "column",
                   gap: "10px",
                   width: "50%",
-
                 }}
               >
                 <TextField
@@ -175,7 +182,7 @@ function Home() {
               <Box>
                 <Box>
                   <TextField
-                    sx={{ width: "100%",my:'10px'  }}
+                    sx={{ width: "100%", my: "10px" }}
                     label={t("customerName")}
                     value={customerName}
                     onClick={handleTextFieldClick}
@@ -246,7 +253,7 @@ function Home() {
                   </Dialog>
                 </Box>
                 <TextField
-                  sx={{ width: "100%",my:'10px',}}
+                  sx={{ width: "100%", my: "10px" }}
                   label={t("boxName")}
                   variant="outlined"
                 />
@@ -269,7 +276,10 @@ function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <Typography variant="h6" sx={{ mb: 2, backgroundColor:'#E0E0E0',p:"20px" }}>
+            <Typography
+              variant="h6"
+              sx={{ mb: 2, backgroundColor: "#E0E0E0", p: "20px" }}
+            >
               {t("surfaceDimensions")} {/* ترجمة النص */}
             </Typography>
             <TableContainer>
@@ -306,7 +316,7 @@ function Home() {
             </TableContainer>
           </motion.div>
         </Grid2>
-    
+
         <Grid2 size={{ xs: 12, md: 4 }}>
           <motion.div
             sx={{
@@ -321,7 +331,10 @@ function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <Typography variant="h6" sx={{ mb: 2, backgroundColor:'#E0E0E0' , p:"20px"}}>
+            <Typography
+              variant="h6"
+              sx={{ mb: 2, backgroundColor: "#E0E0E0", p: "20px" }}
+            >
               {t("userInformation")}
             </Typography>
 
@@ -442,7 +455,10 @@ function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <Typography variant="h6" sx={{ mb: 2,backgroundColor:'#E0E0E0',p:"20px" }}>
+            <Typography
+              variant="h6"
+              sx={{ mb: 2, backgroundColor: "#E0E0E0", p: "20px" }}
+            >
               {t("costAndProfitSummary")}
             </Typography>
 
@@ -511,7 +527,10 @@ function Home() {
             </Box>
           </motion.div>
         </Grid2>
-        <Grid2 size={{ xs: 12, md: 6 , }} sx={{transform:'translateY(-100px)'}}>
+        <Grid2
+          size={{ xs: 12, md: 6 }}
+          sx={{ transform: "translateY(-100px)" }}
+        >
           <motion.div
             sx={{
               border: "1px solid #ccc",
@@ -526,7 +545,10 @@ function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <Typography variant="h6" sx={{ mb: 2, backgroundColor:'#E0E0E0',p:'20px'}}>
+            <Typography
+              variant="h6"
+              sx={{ mb: 2, backgroundColor: "#E0E0E0", p: "20px" }}
+            >
               {t("costAndProfitSummary")}
             </Typography>
 
