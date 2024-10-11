@@ -24,7 +24,7 @@ function Layout() {
           sx={{
             width: sideBarOpen ? "80%" : "90%",
             mx: "auto",
-            ml: sideBarOpen ? {xs:"0",md:"250px"} : "45px",
+            ml: sideBarOpen ? {xs:"0",md:"250px"} : "0",
             padding: "20px"
           }}
         >

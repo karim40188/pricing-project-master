@@ -27,7 +27,7 @@ export const LanguageProvider = ({ children }) => {
 
 
 
-  let [sideBarOpen,setSideBarOpen]=useState(true)
+  let [sideBarOpen,setSideBarOpen]=useState(false)
 
   return (
     <LanguageContext.Provider value={{ language, direction, handleLanguageChange , sideBarOpen, setSideBarOpen }}>
