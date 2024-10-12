@@ -24,8 +24,10 @@ import {
   Typography,
 } from "@mui/material";
 import { useTranslation } from "react-i18next";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { motion } from "framer-motion";
+import html2canvas from "html2canvas";
+import jsPDF from "jspdf";
 // import {
 //   Table,
 //   TableBody,
@@ -162,22 +164,57 @@ function Comparison() {
     );
   };
 
+  let contentRef = useRef(null);
+  const handleDownloadPdf = () => {
+    html2canvas(contentRef.current).then((canvas) => {
+      const imgData = canvas.toDataURL("image/png");
+      const pdf = new jsPDF();
+      const imgWidth = 190; // Adjust width as needed
+      const pageHeight = pdf.internal.pageSize.height;
+      const imgHeight = (canvas.height * imgWidth) / canvas.width;
+      let heightLeft = imgHeight;
+
+      let position = 0;
+
+      pdf.addImage(imgData, "PNG", 10, position, imgWidth, imgHeight);
+      heightLeft -= pageHeight;
+
+      while (heightLeft >= 0) {
+        position = heightLeft - imgHeight;
+        pdf.addPage();
+        pdf.addImage(imgData, "PNG", 10, position, imgWidth, imgHeight);
+        heightLeft -= pageHeight;
+      }
+      pdf.save("ItemsDetails.pdf");
+    });
+  };
+
   return (
     <Box>
-      <Box sx={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+      <Button
+        variant="contained"
+        sx={{ mb: "10px" }}
+        onClick={handleDownloadPdf}
+      >
+        Download PDF
+      </Button>
+      <Box
+        sx={{ display: "flex", flexDirection: "column", gap: "10px" }}
+        ref={contentRef}
+      >
         {/* Done */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
         >
-              <Typography
-              variant="h6"
-              sx={{ mb: 2, backgroundColor: "#E0E0E0", p: "20px" }}
-            >{t('ItemsDetails')}</Typography>
+          <Typography
+            variant="h6"
+            sx={{ mb: 2, backgroundColor: "#E0E0E0", p: "20px" }}
+          >
+            {t("ItemsDetails")}
+          </Typography>
           <Grid2 container justifyContent="space-between" sx={{ gap: "30px" }}>
-
-        
             <Grid2
               size={{ md: 4 }}
               sx={{
@@ -187,7 +224,6 @@ function Comparison() {
                 borderRadius: "10px",
               }}
             >
-
               <Box sx={{ display: "flex", flexWrap: "wrap", gap: "15px" }}>
                 <Box
                   sx={{
@@ -204,6 +240,13 @@ function Comparison() {
                     fullWidth
                     InputLabelProps={{
                       shrink: true,
+                    }}
+                    slotProps={{
+                      inputLabel: {
+                        style: {
+                          transform: "translate(2px,-8px)",
+                        },
+                      },
                     }}
                   />
                   <TextField label={t("boxType")} fullWidth select>
@@ -292,7 +335,7 @@ function Comparison() {
               </Box>
             </Grid2>
 
-            <Grid2 size={{ xs:12, md: 4 }}>
+            <Grid2 size={{ xs: 12, md: 4 }}>
               <Box
                 sx={{
                   border: "1px solid #ccc",
@@ -306,7 +349,7 @@ function Comparison() {
               >
                 <TableContainer>
                   <Table>
-                    <TableHead sx={{ }}>
+                    <TableHead sx={{}}>
                       <TableRow>
                         <TableCell>{t("boxName")}</TableCell>
                         <TableCell>{t("length")}</TableCell>
@@ -318,27 +361,19 @@ function Comparison() {
                       <TableRow>
                         <TableCell>{t("doubleBrownSimpleBox")}</TableCell>
                         <TableCell>
-                          <TextField
-                            sx={{ width: "100%", }}
-                          />
+                          <TextField sx={{ width: "100%" }} />
                         </TableCell>
                         <TableCell>
-                          <TextField
-                            sx={{ width: "100%", }}
-                          />
+                          <TextField sx={{ width: "100%" }} />
                         </TableCell>
                         <TableCell>
-                          <TextField
-                            sx={{ width: "100%",  }}
-                          />
+                          <TextField sx={{ width: "100%" }} />
                         </TableCell>
                       </TableRow>
                       <TableRow>
                         <TableCell>{t("boxWeight")}</TableCell>
                         <TableCell>
-                          <TextField
-                            sx={{ width: "100%",}}
-                          />
+                          <TextField sx={{ width: "100%" }} />
                         </TableCell>
                         <TableCell colSpan={2}></TableCell>
                       </TableRow>
@@ -348,63 +383,61 @@ function Comparison() {
               </Box>
             </Grid2>
 
-
-
-
             <Grid2 size={{ xs: 12, md: 3 }}>
-          <motion.div
-            sx={{
-              border: "1px solid #ccc",
-              p: "20px",
-              width: "100%",
-              borderRadius: "8px",
-              boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
-              backgroundColor: "#f9f9f9",
-            }}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <Typography
-              variant="h6"
-              sx={{ mb: 2, backgroundColor: "#E0E0E0", p: "20px" }}
-            >
-              {t("surfaceDimensions")} {/* ترجمة النص */}
-            </Typography>
-            <TableContainer>
-              <Table>
-                <TableHead sx={{ backgroundColor: "#f2f2f2" }}>
-                  <TableRow>
-                    <TableCell>{t("dimension")}</TableCell> {/* ترجمة النص */}
-                    <TableCell>{t("value")}</TableCell> {/* ترجمة النص */}
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  <TableRow>
-                    <TableCell>{t("length")}</TableCell> {/* ترجمة النص */}
-                    <TableCell>
-                      <TextField
-                        name="length"
-                        fullWidth
-                        onChange={handleInputChange}
-                      />
-                    </TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell>{t("width")}</TableCell> {/* ترجمة النص */}
-                    <TableCell>
-                      <TextField
-                        name="width"
-                        fullWidth
-                        onChange={handleInputChange}
-                      />
-                    </TableCell>
-                  </TableRow>
-                </TableBody>
-              </Table>
-            </TableContainer>
-          </motion.div>
-        </Grid2>
+              <motion.div
+                sx={{
+                  border: "1px solid #ccc",
+                  p: "20px",
+                  width: "100%",
+                  borderRadius: "8px",
+                  boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
+                  backgroundColor: "#f9f9f9",
+                }}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+              >
+                <Typography
+                  variant="h6"
+                  sx={{ mb: 2, backgroundColor: "#E0E0E0", p: "20px" }}
+                >
+                  {t("surfaceDimensions")} {/* ترجمة النص */}
+                </Typography>
+                <TableContainer>
+                  <Table>
+                    <TableHead sx={{ backgroundColor: "#f2f2f2" }}>
+                      <TableRow>
+                        <TableCell>{t("dimension")}</TableCell>{" "}
+                        {/* ترجمة النص */}
+                        <TableCell>{t("value")}</TableCell> {/* ترجمة النص */}
+                      </TableRow>
+                    </TableHead>
+                    <TableBody>
+                      <TableRow>
+                        <TableCell>{t("length")}</TableCell> {/* ترجمة النص */}
+                        <TableCell>
+                          <TextField
+                            name="length"
+                            fullWidth
+                            onChange={handleInputChange}
+                          />
+                        </TableCell>
+                      </TableRow>
+                      <TableRow>
+                        <TableCell>{t("width")}</TableCell> {/* ترجمة النص */}
+                        <TableCell>
+                          <TextField
+                            name="width"
+                            fullWidth
+                            onChange={handleInputChange}
+                          />
+                        </TableCell>
+                      </TableRow>
+                    </TableBody>
+                  </Table>
+                </TableContainer>
+              </motion.div>
+            </Grid2>
           </Grid2>
         </motion.div>
 
@@ -416,9 +449,6 @@ function Comparison() {
           <Grid2 container sx={{ mt: "20px" }}>
             {/* Done */}
 
-
-
-
             <Grid2
               size={{ xs: 12, md: 4 }}
               sx={{
@@ -427,16 +457,15 @@ function Comparison() {
                 display: "flex",
                 flexDirection: "column",
                 gap: "30px",
-             
               }}
             >
-              <Typography variant="h6" sx={{ mb: 2, backgroundColor:'#E0E0E0', p:'20px' }}>
+              <Typography
+                variant="h6"
+                sx={{ mb: 2, backgroundColor: "#E0E0E0", p: "20px" }}
+              >
                 {t("pricingTable1")} {/* Pricing Table 1 */}
               </Typography>
-              <TableContainer
-                sx={{ height: "auto", }}
-                component={""}
-              >
+              <TableContainer sx={{ height: "auto" }} component={""}>
                 <Table>
                   <TableBody>
                     <TableRow>
@@ -542,8 +571,6 @@ function Comparison() {
               </Box>
             </Grid2>
 
-          
-
             <Grid2
               size={{ xs: 12, md: 4 }}
               sx={{
@@ -552,13 +579,15 @@ function Comparison() {
                 display: "flex",
                 flexDirection: "column",
                 gap: "30px",
-      
               }}
             >
-              <Typography variant="h6" sx={{ mb: 2, backgroundColor:'#E0E0E0', p:'20px' }}>
+              <Typography
+                variant="h6"
+                sx={{ mb: 2, backgroundColor: "#E0E0E0", p: "20px" }}
+              >
                 {t("pricingTable2")} {/* Pricing Table 2 */}
               </Typography>
-              <TableContainer sx={{ height: "auto", }} component={""} >
+              <TableContainer sx={{ height: "auto" }} component={""}>
                 <Table>
                   <TableBody>
                     <TableRow>
@@ -674,7 +703,10 @@ function Comparison() {
                 gap: "30px",
               }}
             >
-              <Typography variant="h6" sx={{ mb: 2, backgroundColor:'#E0E0E0', p:'20px'  }}>
+              <Typography
+                variant="h6"
+                sx={{ mb: 2, backgroundColor: "#E0E0E0", p: "20px" }}
+              >
                 {t("pricingTable3")} {/* Pricing Table 3 */}
               </Typography>
               <TableContainer sx={{ height: "auto" }} component={""}>

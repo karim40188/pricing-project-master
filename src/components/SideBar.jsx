@@ -116,7 +116,7 @@ function SideBar() {
             );
           })}
           <Box
-            sx={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}
+            sx={{ display: "flex", justifyContent: "center",width:'100%' }}
           >
             <Button
               sx={{
@@ -139,6 +139,7 @@ function SideBar() {
                 color: "#fff",
                 transition: "background-color 0.3s ease",
                 fontSize: { xs: "0.75rem", md: "1rem" }, // Responsive font size
+                
               }}
               onClick={() => handleLanguageChange("ar")}
             >

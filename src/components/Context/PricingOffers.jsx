@@ -21,13 +21,6 @@ const PricingOffers = () => {
 
   return (
     <Box 
-      sx={{ 
-        // padding: 2, 
-        // width: '100%', 
-        // maxWidth: '1200px', 
-        // margin: '0 auto', // ليكون في المنتصف
-        // boxSizing: 'border-box' // يحسب البادينج ضمن الحجم الكلي
-      }}
     >
       <Typography variant="h4" gutterBottom>
         Previous Pricing Offers
