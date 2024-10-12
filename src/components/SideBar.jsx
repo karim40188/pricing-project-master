@@ -4,14 +4,14 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { LanguageContext } from "./Context/Context";
 import { useTranslation } from "react-i18next";
 import logo from "../assets/logo.png";
-
+import { motion } from "framer-motion";
 function SideBar() {
   let navigate = useNavigate();
   const { handleLanguageChange, sideBarOpen, } =
     useContext(LanguageContext);
   const { t } = useTranslation();
   const [links, setLinks] = useState([]);
-  let sidebarWidth = sideBarOpen ? {xs: "40%", sm: "200px", md: "240px"} : "";
+  let sidebarWidth = sideBarOpen ? {xs: "40%", sm: "200px", md: "240px"} : "0px";
 
   useEffect(() => {
     setLinks([
@@ -36,18 +36,21 @@ function SideBar() {
           boxShadow: "0 8px 16px -2px rgba(40,45,62,.24)",
           zIndex: "99999",
           height: "auto",
+          transition:'700ms width'
+ 
         }}
       >
       
         <Box
           sx={{
             width: "100%",
-            display: "flex",
+            display:sideBarOpen? 'flex':'none',
             alignItems: "end",
             justifyContent: "center",
             flexDirection: "column",
             gap: "30px",
             pt: "30px",
+       
           }}
         >
           <Box

@@ -16,7 +16,7 @@ function Layout() {
         direction,
       }}
     >
-      <Box>{sideBarOpen && <SideBar />}</Box>
+      <SideBar />
 
       <Box>
         <Navbar />
