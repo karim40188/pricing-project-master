@@ -7,31 +7,29 @@ import { LanguageContext } from "./Context/Context";
 
 function Layout() {
   const { direction, sideBarOpen } = useContext(LanguageContext);
-  let sidebarWidth = sideBarOpen ? { xs: "30%", sm: "200px", md: "240px" } : "";
+  let sidebarWidth = sideBarOpen ? {xs: "40%", sm: "200px", md: "240px"} : "";
 
   return (
     <Box
       sx={{
-        direction,
         width: "100%",
+        direction,
       }}
     >
       <Box>{sideBarOpen && <SideBar />}</Box>
 
       <Box>
+        <Navbar />
         <Box
           sx={{
             width: sideBarOpen ? "80%" : "95%",
             margin: "auto",
-          
+            padding: "30px",
+            mt: {xs:'15%',md:"5%"},
             ml: sidebarWidth,
           }}
         >
-          <Navbar />
-<Box sx={{ padding: "20px" ,  my:'30px',}}>
-
           <Outlet />
-</Box>
         </Box>
       </Box>
     </Box>

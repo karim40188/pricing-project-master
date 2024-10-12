@@ -4,15 +4,14 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { LanguageContext } from "./Context/Context";
 import { useTranslation } from "react-i18next";
 import logo from "../assets/logo.png";
-import { FaXmark } from "react-icons/fa6";
 
 function SideBar() {
   let navigate = useNavigate();
-  const { handleLanguageChange, sideBarOpen, setSideBarOpen } =
+  const { handleLanguageChange, sideBarOpen, } =
     useContext(LanguageContext);
   const { t } = useTranslation();
   const [links, setLinks] = useState([]);
-  let sidebarWidth = sideBarOpen ? { xs: "30%", sm: "200px", md: "240px" } : "";
+  let sidebarWidth = sideBarOpen ? {xs: "40%", sm: "200px", md: "240px"} : "";
 
   useEffect(() => {
     setLinks([
@@ -32,20 +31,14 @@ function SideBar() {
           left: "0",
           top: "0",
           bottom: "0",
+          right:'0',
           color: "#fff",
           boxShadow: "0 8px 16px -2px rgba(40,45,62,.24)",
           zIndex: "99999",
           height: "auto",
         }}
       >
-        <Box
-          sx={{ position: "absolute", right: "0", top: "0", fontSize: "30px" }}
-          onClick={() => {
-            setSideBarOpen(false);
-          }}
-        >
-          <FaXmark />
-        </Box>
+      
         <Box
           sx={{
             width: "100%",

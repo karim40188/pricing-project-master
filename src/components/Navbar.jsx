@@ -15,50 +15,58 @@ const Navbar = () => {
   ];
 
   let { sideBarOpen, setSideBarOpen } = useContext(LanguageContext);
-
   function handleSidebar() {
     setSideBarOpen(!sideBarOpen);
   }
+
+  let sidebarWidth = sideBarOpen ? { xs: "40%", sm: "200px", md: "240px" } : "";
+
 
   return (
     <AppBar
       sx={{
         backgroundColor: "#333333",
         color: "#fff",
-        position:'static',
-        width:"100%",
-    
-
-        // width: sideBarOpen ? "100%" : "1340px",
+        position: "fixed",
+        width: "100%",
       }}
     >
       <Box
         sx={{
           display: "flex",
-          justifyContent: "end",
+          justifyContent: "space-between",
           alignItems: "center",
           p: "10px",
+          ml:sidebarWidth
           // ml:"300px"
         }}
       >
-        <IoMdMenu
-          onClick={handleSidebar}
-          style={{ fontSize: "32px", zIndex: "9999",}}
-        />
-        <Box>
+      
+          <IoMdMenu
+            onClick={handleSidebar}
+            style={{
+              fontSize: "32px",
+              zIndex: "9999",
+              display: "flex",
+            }}
+          />
+    
+
+        <Box sx={{ display: "flex" }}>
           {navItems.map((item) => (
             <Button
               key={item.path}
               component={Link}
               to={item.path}
               color="inherit"
-              sx={{textTransform:'capitalize'}}
+              sx={{ textTransform: "capitalize" }}
             >
               {item.name}
             </Button>
           ))}
         </Box>
-      </Box>
+        </Box>
+     
     </AppBar>
   );
 };
